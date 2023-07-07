@@ -1,26 +1,27 @@
 #include "main.h"
 
 /**
- * _strncat - concatenates two strings
+ * rot13 - encodes a string into rot13
+ * @s: string to encode
  *
- * @src: The source of strings
- * @dest: The destination of the string
- * @n: The length of int
- *
- * Return: pointer to the resulting string dest
+ * Return: address of s
  */
-char *_strncat(char *dest, char *src, int n)
+char *rot13(char *s)
 {
 	int i, j;
+	char a[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char b[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
 
-	for (i = 0; dest[i] != '\0'; i++)
+	for (i = 0; *(s + i); i++)
 	{
-		continue;
+		for (j = 0; j < 52; j++)
+		{
+			if (a[j] == *(s + i))
+			{
+				*(s + i) = b[j];
+				break;
+			}
+		}
 	}
-	for (j = 0; src[j] != '\0' && j < n; j++)
-	{
-		dest[i + j] = src[j];
-	}
-	dest[i + j] = '\0';
-	return (dest);
+	return (s);
 }
